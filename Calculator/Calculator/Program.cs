@@ -10,24 +10,24 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            int num1;
-            int num2;
-            int result = 0;
+            float num1;
+            float num2;
+            float result = 0;
 
             string answer;
 
             Console.WriteLine("Hello! Welcome to the calculator program!");
             
             Console.WriteLine("Please enter your first number: ");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            num1 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Please enter your second number: ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            num2 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("What type of operation would you like to do?");
             Console.WriteLine("Please enter 'a' for addition, 's' for subtraction, 'm' for multiplication, or 'd' for division.");
 
-            answer = Console.ReadLine();
+            answer = Console.ReadLine().ToLower();
 
             if (answer == "a")
             {
@@ -43,7 +43,7 @@ namespace Calculator
             }
             else if (answer == "d")
             {
-                result = num1 / num2;
+                result = num2 ==0? float.NaN : num1 / num2;
             }
             else
             {
@@ -51,8 +51,16 @@ namespace Calculator
                 return;
             }
 
-            Console.WriteLine("The result is " + result);
+            if (float.IsNaN(result))
+            {
+                Console.WriteLine("Cannot divide by zero!");
+            }
+            else
+            {
+                Console.WriteLine("The result is " + result);
+            }
 
+                
             Console.WriteLine("Thank you for using the calculator program!");
 
             Console.ReadKey();
